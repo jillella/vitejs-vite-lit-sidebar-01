@@ -1,8 +1,8 @@
 export const mockdata = [
-  { label: 'Dashboard', icon: IconGauge },
+  { label: 'Dashboard', icon: '📄' },
   {
     label: 'Market news',
-    icon: IconNotes,
+    icon: '📂',
     initiallyOpened: true,
     links: [
       { label: 'Overview', link: '/' },
@@ -13,19 +13,21 @@ export const mockdata = [
   },
   {
     label: 'Releases',
-    icon: IconCalendarStats,
+    icon: '📂',
+    initiallyOpened: true,
     links: [
       { label: 'Upcoming releases', link: '/' },
       { label: 'Previous releases', link: '/' },
       { label: 'Releases schedule', link: '/' },
     ],
   },
-  { label: 'Analytics', icon: IconPresentationAnalytics },
-  { label: 'Contracts', icon: IconFileAnalytics },
-  { label: 'Settings', icon: IconAdjustments },
+  { label: 'Analytics', icon: '📄' },
+  { label: 'Contracts', icon: '📄' },
+  { label: 'Settings', icon:'📄' },
   {
     label: 'Security',
-    icon: IconLock,
+    icon: '📂',
+    initiallyOpened: true,
     links: [
       { label: 'Enable 2FA', link: '/' },
       { label: 'Change password', link: '/' },

@@ -13,20 +13,47 @@ export class StudsSidebar extends LitElement {
   @property({ type: Array }) items: SidebarItem[] = [];
 
   static styles = css`
-    /* Your CSS styling here */
-  `;
+  :host {
+    display: block;
+    width: 200px;
+    height: 100vh;
+    background-color: #f0f0f0;
+    overflow: auto;
+  }
+
+  div.nav-group {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  div.nav-item {
+    padding-left: 1.5rem;
+  }
+
+  a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+    padding: 5px 0;
+  }
+
+  a:hover {
+    color: #646cff;
+  }
+`;
+
 
   render() {
     return html`
       <div>
         ${this.items.map(
           (item) => html`
-            <div>
+            <div class='nav-group'>
               ${item.icon} ${item.label}
               ${
                 item.links
                   ? html`
-                    <div ?hidden=${!item.initiallyOpened}>
+                    <div class='nav-item' ?hidden=${!item.initiallyOpened}>
                       ${item.links.map(
                         (link) =>
                           html` <a href="${link.link}">${link.label}</a> `
