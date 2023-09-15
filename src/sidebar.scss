@@ -1,0 +1,16 @@
+.breadcrumbs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.crumb {
+  margin-right: 0.5em;
+}
+.crumb::after {
+  content: '>';
+  margin-left: 0.5em;
+}
+.crumb:last-child::after {
+  content: '';
+}
