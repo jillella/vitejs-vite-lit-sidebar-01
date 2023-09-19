@@ -14,7 +14,6 @@ export const mockdata = [
   {
     label: 'Releases',
     icon: '📂',
-    initiallyOpened: true,
     links: [
       { label: 'Upcoming releases', link: '/' },
       { label: 'Previous releases', link: '/' },
@@ -27,7 +26,6 @@ export const mockdata = [
   {
     label: 'Security',
     icon: '📂',
-    initiallyOpened: true,
     links: [
       { label: 'Enable 2FA', link: '/' },
       { label: 'Change password', link: '/' },

@@ -1,12 +1,12 @@
 import { html, css, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-type SidebarItem = {
+interface SidebarItem {
   label: string;
   icon: any;
   initiallyOpened?: boolean;
   links?: { label: string; link: string }[];
-};
+}
 
 @customElement('studs-sidebar')
 export class StudsSidebar extends LitElement {
@@ -17,6 +17,7 @@ export class StudsSidebar extends LitElement {
     display: block;
     width: 200px;
     height: 100vh;
+    padding: 0.5rem;
     background-color: #f0f0f0;
     overflow: auto;
   }
@@ -40,32 +41,48 @@ export class StudsSidebar extends LitElement {
   a:hover {
     color: #646cff;
   }
+
+  .arrow {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform 0.3s ease;
+  }
+
+  .arrow.open {
+    transform: rotate(90deg);
+  }
 `;
 
+toggleLinks(item: SidebarItem) {
+  item.initiallyOpened = !item.initiallyOpened;
+  this.requestUpdate();
+}
 
-  render() {
-    return html`
-      <div>
-        ${this.items.map(
-          (item) => html`
-            <div class='nav-group'>
-              ${item.icon} ${item.label}
-              ${
-                item.links
-                  ? html`
-                    <div class='nav-item' ?hidden=${!item.initiallyOpened}>
-                      ${item.links.map(
-                        (link) =>
-                          html` <a href="${link.link}">${link.label}</a> `
-                      )}
-                    </div>
-                  `
-                  : ''
-              }
-            </div>
-          `
-        )}
-      </div>
-    `;
-  }
+render() {
+  return html`
+    <div>
+      ${this.items.map(
+        (item) => html`
+          <div class='nav-group'>
+            ${item.icon} ${item.label}
+            ${item.links
+              ? html`
+                  <span class="arrow ${item.initiallyOpened ? 'open' : ''}" @click=${() => this.toggleLinks(item)}>
+                    >
+                  </span>
+                  <div class='nav-item' ?hidden=${!item.initiallyOpened}>
+                    ${item.links.map(
+                      (link) =>
+                        html` <a href="${link.link}">${link.label}</a> `
+                    )}
+                  </div>
+                `
+              : ''}
+          </div>
+        `
+      )}
+    </div>
+  `;
+}
 }
